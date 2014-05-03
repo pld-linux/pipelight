@@ -1,0 +1,47 @@
+diff -dur mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin mmueller2012-pipelight-487f8db5a03d/bin/pipelight-plugin
+--- mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin	2014-04-06 04:43:13.000000000 +0200
++++ mmueller2012-pipelight-487f8db5a03d/bin/pipelight-plugin	2014-05-03 17:21:35.797421889 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env bash
++#!/bin/bash
+ VERSION="@@VERSION@@"
+ 
+ # Global configuration
+@@ -101,7 +101,7 @@
+ 	PLUGIN_PATH=$(readlink -m "$PLUGIN_PATH")
+ 
+ 	# Global installation
+-	if [ $(/usr/bin/id -u) -eq 0 ]; then
++	if [ $(/bin/id -u) -eq 0 ]; then
+ 		INSTALLDIR="$PLUGIN_PATH"
+ 
+ 	# Use environment variable (only if it doesn't point to the global directory)
+@@ -436,6 +436,10 @@
+ 			return 1
+ 		fi
+ 	done
++	
++	if [ "$INSTALLDIR" = "$PLUGIN_PATH" ] ; then
++		/usr/sbin/update-browser-plugins || :
++	fi
+ 
+ 	return 0
+ }
+@@ -460,6 +464,10 @@
+ 
+ 	done
+ 
++	if [ "$INSTALLDIR" = "$PLUGIN_PATH" ] ; then
++		/usr/sbin/update-browser-plugins || :
++	fi
++
+ 	return 0
+ }
+ 
+@@ -647,4 +655,4 @@
+ 	esac
+ done
+ 
+-exit "$RET"
+\ No newline at end of file
++exit "$RET"

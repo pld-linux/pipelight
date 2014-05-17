@@ -2,11 +2,12 @@
 %define commit	487f8db5a03d
 
 Summary:	Browser plugin to load Windows browser plugins
+Summary(pl.UTF-8):	Wtyczka przeglądarki do wczytywania wtyczek przeglądarek z systemu Windows
 Name:		pipelight
 Version:	0.2.6
 Release:	0.1
-License:	MPL 1.1/GPL 2.0/LGPL 2.1
-Group:		Applications
+License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
+Group:		Applications/WWW
 Source0:	https://bitbucket.org/mmueller2012/pipelight/get/v%{version}.tar.bz2
 # Source0-md5:	265747e08a3b2dd806c47a228f03df5b
 Source1:	http://repos.fds-team.de/pluginloader/v%{version}/pluginloader.tar.gz
@@ -23,22 +24,26 @@ ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Pipelight is a special browser plugin which allows one to use windows
+Pipelight is a special browser plugin which allows one to use Windows
 only plugins inside Linux browsers. We are currently focusing on
 Silverlight, Flash, Shockwave and the Unity Webplayer. The project
 needs a patched version of Wine to execute the Silverlight DLL.
 
+%description -l pl.UTF-8
+Pipelight to specjalna wtyczka przeglądarki, pozwalająca na
+korzystanie z wtyczek przeznaczonych tylko dla systemu Windows w
+przeglądarce na Linuksie. Obecnie skupia się na wtyczkach Silverlight,
+Flash, Shockwave oraz Unity Webplayer. Do uruchamiania bibliotek DLL
+Silverlighta niezbędna jest załatana wersja Wine.
+
 %prep
 %setup -q -a1 -n mmueller2012-%{name}-%{commit}
-
-%ifarch %{x8664}
+%if "%{_lib}" == "lib64"
 %patch0 -p1
 %endif
-
 %patch1 -p1
 
 %build
-
 # not autoconf-generated
 ./configure \
 	--prefix=%{_prefix} \
@@ -66,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pipelight-plugin
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/libpipelight.so
-%{_mandir}/man1/*.1*
+%{_mandir}/man1/pipelight-plugin.1*
 %dir %{_datadir}/%{name}
 %attr(755,root,root) %{_datadir}/%{name}/hw-accel-default
 %attr(755,root,root) %{_datadir}/%{name}/install-dependency

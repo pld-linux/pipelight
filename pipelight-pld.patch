@@ -38,10 +38,35 @@ diff -dur mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin mmueller
  	return 0
  }
  
-@@ -647,4 +655,4 @@
- 	esac
- done
+--- mmueller2012-pipelight-487f8db5a03d/share/install-dependency.orig	2014-04-06 04:43:13.000000000 +0200
++++ mmueller2012-pipelight-487f8db5a03d/share/install-dependency	2014-05-17 08:13:42.342695672 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env bash
++#!/bin/bash
  
--exit "$RET"
-\ No newline at end of file
-+exit "$RET"
+ usage()
+ {
+--- mmueller2012-pipelight-487f8db5a03d/share/scripts/configure-flash.in.orig	2014-04-06 04:43:13.000000000 +0200
++++ mmueller2012-pipelight-487f8db5a03d/share/scripts/configure-flash.in	2014-05-17 08:14:55.152694157 +0200
+@@ -1,7 +1,7 @@
+-#!/usr/bin/env bash
++#!/bin/bash
+ 
+ # Don't run this as root
+-if [ $(/usr/bin/id -u) -eq 0 ]; then
++if [ $(/bin/id -u) -eq 0 ]; then
+ 	echo "ERROR: You should not run this as root!" >&2
+ 	exit 1
+ fi
+--- mmueller2012-pipelight-487f8db5a03d/share/scripts/configure-silverlight.in.orig	2014-04-06 04:43:13.000000000 +0200
++++ mmueller2012-pipelight-487f8db5a03d/share/scripts/configure-silverlight.in	2014-05-17 08:14:46.636027667 +0200
+@@ -1,7 +1,7 @@
+-#!/usr/bin/env bash
++#!/bin/bash
+ 
+ # Don't run this as root
+-if [ $(/usr/bin/id -u) -eq 0 ]; then
++if [ $(/bin/id -u) -eq 0 ]; then
+ 	echo "ERROR: You should not run this as root!" >&2
+ 	exit 1
+ fi

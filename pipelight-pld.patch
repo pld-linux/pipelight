@@ -1,14 +1,8 @@
-diff -dur mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin mmueller2012-pipelight-487f8db5a03d/bin/pipelight-plugin
---- mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin	2014-04-06 04:43:13.000000000 +0200
-+++ mmueller2012-pipelight-487f8db5a03d/bin/pipelight-plugin	2014-05-03 17:21:35.797421889 +0200
-@@ -1,4 +1,4 @@
--#!/usr/bin/env bash
-+#!/bin/bash
- VERSION="@@VERSION@@"
- 
- # Global configuration
-@@ -101,7 +101,7 @@
- 	PLUGIN_PATH=$(readlink -m "$PLUGIN_PATH")
+diff -dur mmueller2012-pipelight-b7b5e5471d52.orig/bin/pipelight-plugin.in mmueller2012-pipelight-b7b5e5471d52/bin/pipelight-plugin.in
+--- mmueller2012-pipelight-b7b5e5471d52.orig/bin/pipelight-plugin.in	2014-12-10 05:56:45.000000000 +0100
++++ mmueller2012-pipelight-b7b5e5471d52/bin/pipelight-plugin.in	2015-01-27 22:10:38.136330589 +0100
+@@ -93,7 +93,7 @@
+ 	PLUGIN_PATH=$(realpath "$PLUGIN_PATH")
  
  	# Global installation
 -	if [ $(/usr/bin/id -u) -eq 0 ]; then
@@ -16,7 +10,16 @@ diff -dur mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin mmueller
  		INSTALLDIR="$PLUGIN_PATH"
  
  	# Use environment variable (only if it doesn't point to the global directory)
-@@ -436,6 +436,10 @@
+@@ -421,7 +421,7 @@
+ 	local retval=0
+ 
+ 	# Don't run this as root
+-	if [ $(/usr/bin/id -u) -eq 0 ]; then
++	if [ $(/bin/id -u) -eq 0 ]; then
+ 		echo "ERROR: You should not run this as root!" >&2
+ 		return 1
+ 	fi
+@@ -545,6 +545,10 @@
  			return 1
  		fi
  	done
@@ -27,7 +30,7 @@ diff -dur mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin mmueller
  
  	return 0
  }
-@@ -460,6 +464,10 @@
+@@ -569,6 +573,10 @@
  
  	done
  
@@ -38,19 +41,20 @@ diff -dur mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin mmueller
  	return 0
  }
  
---- mmueller2012-pipelight-487f8db5a03d/share/install-dependency.orig	2014-04-06 04:43:13.000000000 +0200
-+++ mmueller2012-pipelight-487f8db5a03d/share/install-dependency	2014-05-17 08:13:42.342695672 +0200
+diff -dur mmueller2012-pipelight-b7b5e5471d52.orig/share/install-dependency mmueller2012-pipelight-b7b5e5471d52/share/install-dependency
+--- mmueller2012-pipelight-b7b5e5471d52.orig/share/install-dependency	2014-12-10 05:56:45.000000000 +0100
++++ mmueller2012-pipelight-b7b5e5471d52/share/install-dependency	2015-01-27 22:10:18.286240248 +0100
 @@ -1,4 +1,4 @@
 -#!/usr/bin/env bash
 +#!/bin/bash
  
  usage()
  {
---- mmueller2012-pipelight-487f8db5a03d/share/scripts/configure-flash.in.orig	2014-04-06 04:43:13.000000000 +0200
-+++ mmueller2012-pipelight-487f8db5a03d/share/scripts/configure-flash.in	2014-05-17 08:14:55.152694157 +0200
-@@ -1,7 +1,7 @@
--#!/usr/bin/env bash
-+#!/bin/bash
+diff -dur mmueller2012-pipelight-b7b5e5471d52.orig/share/scripts/configure-flash.in mmueller2012-pipelight-b7b5e5471d52/share/scripts/configure-flash.in
+--- mmueller2012-pipelight-b7b5e5471d52.orig/share/scripts/configure-flash.in	2014-12-10 05:56:45.000000000 +0100
++++ mmueller2012-pipelight-b7b5e5471d52/share/scripts/configure-flash.in	2015-01-27 22:10:18.286240248 +0100
+@@ -2,7 +2,7 @@
+ PIPELIGHT_SHARE_PATH="@@PIPELIGHT_SHARE_PATH@@"
  
  # Don't run this as root
 -if [ $(/usr/bin/id -u) -eq 0 ]; then
@@ -58,11 +62,11 @@ diff -dur mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin mmueller
  	echo "ERROR: You should not run this as root!" >&2
  	exit 1
  fi
---- mmueller2012-pipelight-487f8db5a03d/share/scripts/configure-silverlight.in.orig	2014-04-06 04:43:13.000000000 +0200
-+++ mmueller2012-pipelight-487f8db5a03d/share/scripts/configure-silverlight.in	2014-05-17 08:14:46.636027667 +0200
-@@ -1,7 +1,7 @@
--#!/usr/bin/env bash
-+#!/bin/bash
+diff -dur mmueller2012-pipelight-b7b5e5471d52.orig/share/scripts/configure-silverlight.in mmueller2012-pipelight-b7b5e5471d52/share/scripts/configure-silverlight.in
+--- mmueller2012-pipelight-b7b5e5471d52.orig/share/scripts/configure-silverlight.in	2014-12-10 05:56:45.000000000 +0100
++++ mmueller2012-pipelight-b7b5e5471d52/share/scripts/configure-silverlight.in	2015-01-27 22:10:18.289573597 +0100
+@@ -2,7 +2,7 @@
+ PIPELIGHT_SHARE_PATH="@@PIPELIGHT_SHARE_PATH@@"
  
  # Don't run this as root
 -if [ $(/usr/bin/id -u) -eq 0 ]; then
@@ -70,3 +74,10 @@ diff -dur mmueller2012-pipelight-487f8db5a03d.orig/bin/pipelight-plugin mmueller
  	echo "ERROR: You should not run this as root!" >&2
  	exit 1
  fi
+@@ -68,4 +68,4 @@
+ # Cleanup
+ rm "$tmpfile"
+ 
+-exit 0
+\ No newline at end of file
++exit 0

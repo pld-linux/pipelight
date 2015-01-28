@@ -40,7 +40,6 @@ Silverlighta niezbędna jest załatana wersja Wine.
 %prep
 %setup -q -a1 -n mmueller2012-%{name}-%{commit}
 %patch0 -p1
-exit 1
 
 ln -s %{SOURCE1} pluginloader-v%{version}.tar.gz
 ln -s %{SOURCE2} pluginloader-v%{version}.tar.gz.sig
